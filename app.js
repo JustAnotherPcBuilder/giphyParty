@@ -4,14 +4,15 @@ const $container = $('#container');
 
 async function getRandomGif(){
     let searchTerm = `q=${$('#searchBar').val()}`;
-    let  key = 'api_key=MhAodEJIJxQMxW9XqxKjyXfNYdLoOIym'
-    let query = searchTerm + '&' + key;
-    let giphyLink = 'http://api.giphy.com/v1/gifs/search?' + query;
-    const res = await axios.get(giphyLink);
-    console.log(res);
-    const gifs = res.data.data;
-    appendRandomGif(gifs);
-
+    if(searchTerm != 'q='){
+        let  key = 'api_key=MhAodEJIJxQMxW9XqxKjyXfNYdLoOIym'
+        let query = searchTerm + '&' + key;
+        let giphyLink = 'http://api.giphy.com/v1/gifs/search?' + query;
+        const res = await axios.get(giphyLink);
+        console.log(res);
+        const gifs = res.data.data;
+        appendRandomGif(gifs);
+    }
 }
 
 function appendRandomGif(gifArr){
